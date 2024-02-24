@@ -339,10 +339,10 @@ e03555453d1e31775f37331823164c341c09e310463438481019fb0b12fa
 func main() {
     lines := strings.Split(inputs, "\n")
 
-    options := make([]string, len(lines))
+    options := make([][]byte, len(lines))
 
     for i, line := range lines {
-        decoded, _ := utils.FindXorKey(line)
+        decoded, _ := utils.FindXorKey([]byte(line))
         options[i] = decoded
     }
 
@@ -357,7 +357,5 @@ func main() {
     }
 
     fmt.Println("Best score was: ", bestScore)
-    fmt.Printf("We think that %s was the one that was xor'd.\n Original was: %s", lines[index], options[index])
-     
-
+    fmt.Printf("We think that %s was the one that was xor'd.\n Original was: %s", lines[index], string(options[index]))
 }
